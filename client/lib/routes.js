@@ -1,6 +1,8 @@
 FlowRouter.route('/', {
   name: 'home',
   action() {
+    // Note: this would require valid GA credentials
+    // GAnalytics.pageview();
     BlazeLayout.render('HomeLayout');
   }
 });
@@ -8,6 +10,8 @@ FlowRouter.route('/', {
 FlowRouter.route('/recipe-book', {
   name: 'recipe-book',
   action() {
+    // Note: this would require valid GA credentials
+    // GAnalytics.pageview();
     BlazeLayout.render('MainLayout', {main: 'Recipes'});
   }
 });
