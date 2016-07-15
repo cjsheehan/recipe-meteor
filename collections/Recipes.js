@@ -3,6 +3,9 @@ Recipes = new Mongo.Collection('recipes');
 Recipes.allow({
   insert: function(userId, doc) {
     return !!Meteor.userId;
+  },
+  update: function(userId, doc) {
+    return !!Meteor.userId;
   }
 });
 
@@ -55,6 +58,16 @@ RecipeSchema = new SimpleSchema({
       type: "hidden"
     } 
    }
+});
+
+Meteor.methods({
+  toggleMenuItem: function(id, currentState) {
+    Recipes.update(id, {
+      $set: {
+        inMenu: !currentState
+      }  
+    });
+  }
 });
 
 Recipes.attachSchema( RecipeSchema );
