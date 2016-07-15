@@ -1,6 +1,15 @@
+FlowRouter.triggers.enter([function(context, redirect) {
+  if(!Meteor.userId()) {
+    FlowRouter.go('home');
+  }
+}]);
+
 FlowRouter.route('/', {
   name: 'home',
   action() {
+    if(Meteor.userId()) {
+      FlowRouter.go('recipe-book');
+    }
     // Note: this would require valid GA credentials
     // GAnalytics.pageview();
     BlazeLayout.render('HomeLayout');
@@ -17,7 +26,7 @@ FlowRouter.route('/recipe-book', {
 });
 
 FlowRouter.route('/recipe/:id', {
-  name: 'recipe-book',
+  name: 'recipe',
   action() {
     // Note: this would require valid GA credentials
     // GAnalytics.pageview();
